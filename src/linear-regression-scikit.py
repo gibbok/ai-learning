@@ -27,8 +27,8 @@ print(f"Intercept: {intercept}")  # Intercept of the line
 predicted_y = model.predict(X)
 
 # Display predicted values
-for i, x in enumerate(X):
-    print(f"X = {x[0]}, Predicted Y = {predicted_y[i]}")
+for i, X in enumerate(X):
+    print(f"X = {X[0]}, Predicted Y = {predicted_y[i]}")
 
 # Predict a new value
 new_value = 8

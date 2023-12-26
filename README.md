@@ -6,5 +6,5 @@ AI learning project
 To activate TensorFlow enviroment use:
 
 ```shall
-conda activate tf
+conda activate ai
 ```
