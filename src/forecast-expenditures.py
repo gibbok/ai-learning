@@ -20,7 +20,6 @@ else:
 # Read data
 data = pd.read_csv("./data/expenditures.csv")
 
-# Sanitize data
 # Get years as positive numbers
 years = data["years"].abs()
 # Get food_cost as positive numbers, and fill missing values with average from prev and next
@@ -39,7 +38,7 @@ model.fit(X, y)
 new_year = 2024
 predicted_y = model.predict([[new_year]])
 
-# Rate cibversuib
+# Rate conversions
 predicted_y_eur = predicted_y / czk_rate
 predicted_y_month = predicted_y / 12
 predicted_y_month_eur = predicted_y_month / czk_rate
