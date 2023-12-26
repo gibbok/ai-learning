@@ -1,6 +1,6 @@
 """
-Calculate food expenditures based on historical data.
-The result are reported in both CZK and EUR currency.
+Calculate Food Expenditures based on historical data.
+The result are reported in both CZK and EUR currencies.
 """
 
 from sklearn.linear_model import LinearRegression
