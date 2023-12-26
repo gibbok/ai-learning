@@ -57,6 +57,8 @@ predicted_y_trained = model.predict(X)
 predicted_y_trained_df = pd.DataFrame(
     {"years": years, "food_shared": predicted_y_trained}
 )
+print("Predicted using the trained model")
+print(predicted_y_trained_df)
 
 # Plotting the regression line in a new window
 # Create a figure with 1 row and 2 columns
