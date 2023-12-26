@@ -50,8 +50,23 @@ print(
     f"Predicted food_share per month is {predicted_y_month} CZK or {predicted_y_month_eur} EUR"
 )
 
+
+cloned_data = data_sanitized.copy(deep=True)
+new_row = pd.DataFrame({"years": [new_year], "food_shared": predicted_y})
+cloned_data = pd.concat([cloned_data, new_row], ignore_index=True)
+print(cloned_data)
+
 # Plotting the regression line in a new window
-plt.figure()
-plt.title("Food Costs Over Years (CZK)")
-sns.regplot(x="years", y="food_shared", data=data_sanitized)
+# Create a figure with 1 row and 2 columns
+fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+
+# First regplot
+sns.regplot(x="years", y="food_shared", data=data_sanitized, ax=axes[0])
+axes[0].set_title("Historical Data")
+
+# Second regplot
+sns.regplot(x="years", y="food_shared", data=cloned_data, ax=axes[1])
+axes[1].set_title("Forecast")
+
+plt.tight_layout()  # Adjusts spacing between subplots for better visibility
 plt.show()
