@@ -53,5 +53,6 @@ print(
 
 # Plotting the regression line in a new window
 plt.figure()
+plt.title("Food Costs Over Years (CZK)")
 sns.regplot(x="years", y="food_shared", data=data_sanitized)
 plt.show()
