@@ -5,7 +5,8 @@ dir_path = "./experiments/sentiment-analysis-games/"
 
 # Read data
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
-
+# Keep only data for review
+df = df[["review"]]
 # Strip leading and trailing whitespace
 df["review"] = df["review"].str.strip()
 # Remove line breaks
@@ -14,6 +15,7 @@ df["review"] = df["review"].str.replace(r"\n", "")
 df = df.loc[df["review"].str.len() > 2]
 # Remove duplicates
 df = df.drop_duplicates("review")
+
 
 # Save cleaned data
 df.to_csv(os.path.join(dir_path, "data-clean.csv"), index=False)
