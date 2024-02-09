@@ -1,19 +1,21 @@
 import pandas as pd
 
-# Read data
-data = pd.read_csv("./experiments/sentiment-analysis-games/data.csv")
-reviews = data[["review"]]
+dir_path = "./experiments/sentiment-analysis-games/"
 
-# Drop empty rows
-reviews = reviews[reviews["review"].str.strip() != ""]
+# Read data
+df = pd.read_csv(dir_path + "data.csv")
 
 # Strip content
-reviews["review"] = reviews["review"].str.strip()
+df["review"] = df["review"].str.strip()
 
-# Remove any non-word or non-whitespace character
-special_chars = r"[^\w\s]"
-reviews["review"] = reviews["review"].str.replace(special_chars, "", regex=True)
+# Drop empty rows
+df = df.dropna()
 
-print(reviews)
+# Remove any line breaks
+special_chars = r"\n*"
+df["review"] = df["review"].str.replace(special_chars, "", regex=True)
 
-reviews.to_csv("myfile.csv", index=False)
+# Select only review
+# df = df[["review"]]
+
+df.to_csv(dir_path + "data-clean.csv", index=False)
