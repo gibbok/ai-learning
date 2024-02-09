@@ -15,8 +15,8 @@ df = df.dropna()
 special_chars = r"\n*"
 df["review"] = df["review"].str.replace(special_chars, "", regex=True)
 
-# Filter rows with single character
-df = df[df["review"].apply(lambda x: len(x) != 1)]
+# Filter rows with one or two characters
+df = df[df["review"].apply(lambda x: len(x) > 2)]
 
 # Select only review
 # df = df[["review"]]
