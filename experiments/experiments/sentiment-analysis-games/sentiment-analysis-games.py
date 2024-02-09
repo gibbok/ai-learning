@@ -6,12 +6,12 @@ dir_path = "./experiments/sentiment-analysis-games/"
 # Read data
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
-# Clean review data
-# trim, remove line breacks, remove line with length <= 2
-df = df.assign(review=df["review"].str.strip().str.replace(r"\n", "")).loc[
-    df["review"].str.len() > 2
-]
-
+# Strip leading and trailing whitespace
+df["review"] = df["review"].str.strip()
+# Remove line breaks
+df["review"] = df["review"].str.replace(r"\n", "")
+# Filter rows with review length greater than 2
+df = df.loc[df["review"].str.len() > 2]
 # Remove duplicates
 df = df.drop_duplicates("review")
 
