@@ -12,5 +12,8 @@ df = df.assign(review=df["review"].str.strip().str.replace(r"\n", "")).loc[
     df["review"].str.len() > 2
 ]
 
+# Remove duplicates
+df = df.drop_duplicates("review")
+
 # Save cleaned data
 df.to_csv(os.path.join(dir_path, "data-clean.csv"), index=False)
