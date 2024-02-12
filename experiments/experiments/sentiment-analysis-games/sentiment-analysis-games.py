@@ -11,7 +11,7 @@ df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 # Keep only relevat data
 df = df[["review", "voted_up"]]
 
-df.sample(100)
+# df.sample(100)
 
 # Preprocess data
 df["review"] = df["review"].str.strip()
