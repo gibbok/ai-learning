@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import classification_report
 
 # Read data
 dir_path = "./experiments/sentiment-analysis-games/"
@@ -64,3 +65,6 @@ print(f"  Accuracy: {accuracy:.4f}")
 print(f"  Precision: {precision:.4f}")
 print(f"  Recall: {recall:.4f}")
 print(f"  F1-score: {f1:.4f}")
+
+report = classification_report(y_test, y_pred)
+print(report)
