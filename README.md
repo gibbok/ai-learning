@@ -9,5 +9,5 @@ To run the project:
 cd experiments
 poetry shell
 cd ../
-python3 experiments/sentiment-analysis-games/sentiment-analysis-games.py
+make prj1
 ```
