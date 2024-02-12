@@ -20,7 +20,7 @@ else:
     raise Exception("Could not get rates")
 
 # Read data
-data = pd.read_csv("./experiments/forecast-expenditures/data.csv")
+data = pd.read_csv("./experiments/project2/data.csv")
 
 # Get years as positive numbers
 years = data["years"].abs()

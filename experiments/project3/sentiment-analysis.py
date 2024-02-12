@@ -9,7 +9,7 @@ from sklearn.metrics import roc_auc_score, roc_curve
 from matplotlib import pyplot as plt
 
 # Read data
-dir_path = "./experiments/sentiment-analysis-games/"
+dir_path = "./experiments/project3/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
 # Keep only relevat columns
