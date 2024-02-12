@@ -21,11 +21,11 @@ df = df.drop_duplicates("review")
 
 # Vectorize text
 vectorizer = CountVectorizer(analyzer="word", lowercase=False)
-features = vectorizer.fit_transform(df["review"].values.tolist())
+reviews = vectorizer.fit_transform(df["review"].values.tolist())
 
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(
-    features, df["voted_up"], test_size=0.2, random_state=42
+    reviews, df["voted_up"], test_size=0.2, random_state=42
 )
 
 # Train the model
@@ -33,7 +33,7 @@ model = LogisticRegression()
 model.fit(X_train, y_train)
 
 # Predict sentiment for each row
-y_pred = model.predict(features)
+y_pred = model.predict(reviews)
 
 # Add predicted sentiment to the DataFrame
 df["predicted_sentiment"] = y_pred
