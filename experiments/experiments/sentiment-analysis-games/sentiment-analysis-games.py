@@ -11,7 +11,7 @@ df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 # Keep only relevat data
 df = df[["review", "voted_up"]]
 
-df.sample(500)
+df.sample(100)
 
 # Preprocess data
 df["review"] = df["review"].str.strip()
@@ -38,15 +38,6 @@ y_pred = model.predict(features)
 # Add predicted sentiment to the DataFrame
 df["predicted_sentiment"] = y_pred
 
-# # Print the review, true sentiment, and predicted sentiment for each row
-# print("Review | True Sentiment | Predicted Sentiment")
-# print("------- | -------- | --------")
-# for index, row in df.iterrows():
-#     true_sentiment = "Upvoted" if row["voted_up"] else "Not Upvoted"
-#     predicted_sentiment = "Upvoted" if row["predicted_sentiment"] else "Not Upvoted"
-#     print(f"{row['review']} | {true_sentiment} | {predicted_sentiment}")
-
-
 # Convert true sentiment to readable labels
 df["true_sentiment"] = df["voted_up"].apply(lambda x: "Upvoted" if x else "Not Upvoted")
 
@@ -55,7 +46,4 @@ result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 
 # Save the result DataFrame as a CSV file
 result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
-
 print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
-
-print(result_df.to_markdown())
