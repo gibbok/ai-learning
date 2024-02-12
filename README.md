@@ -9,5 +9,5 @@ To run the project:
 cd experiments
 poetry shell
 cd ../
-make prj1
+make p1
 ```

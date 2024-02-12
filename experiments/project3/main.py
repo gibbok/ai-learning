@@ -52,8 +52,8 @@ df["true_sentiment"] = df["voted_up"].apply(lambda x: "Upvoted" if x else "Not U
 result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 
 # Save the result DataFrame as a CSV file
-result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
-print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
+result_df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
+print("Results saved to", os.path.join(dir_path, "results.csv"))
 
 
 # An utility function to quickly test the model
