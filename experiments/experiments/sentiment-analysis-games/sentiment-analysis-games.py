@@ -18,7 +18,7 @@ df = df[["review", "voted_up"]]
 # Use only a sample of the data
 # df.sample(5)
 
-# Preprocess data
+# Preprocess data, trim, remove line breaks, remove shorts, remove duplicates
 df["review"] = df["review"].str.strip()
 df["review"] = df["review"].str.replace(r"\n", " ", regex=True)
 df = df.loc[df["review"].str.len() > 2]
@@ -55,9 +55,7 @@ result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
 print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
 
-
 # Evaluate the model on the testing set
-
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
@@ -74,16 +72,14 @@ print(f"  Precision: {precision:.4f}")
 print(f"  Recall: {recall:.4f}")
 print(f"  F1-score: {f1:.4f}")
 
-
-# Use the classification_report function from sklearn.metrics to get a more detailed breakdown of the model's performance per class,
-# including precision, recall, F1-score, and support (number of samples in each class).
+# Detailed breakdown of the model's performance per class, including:
+# precision, recall, F1-score, and support (number of samples in each class)
 report = classification_report(y_test, y_pred)
 print(report)
 
-
 # Plot the Receiver Operating Characteristic (ROC) curve and calculate the Area Under the Curve (AUC)
-# to understand the model's ability to distinguish between classes at different thresholds.
-# ROC curve uses true and false positive rates to visually assess a binary classification model's performance.#
+# to understand the model's ability to distinguish between classes at different thresholds
+# ROC curve uses true and false positive rates to visually assess a binary classification model's performance
 y_score = model.predict_proba(X_test)[:, 1]
 fpr, tpr, _ = roc_curve(y_test, y_score)
 roc_auc = roc_auc_score(y_test, y_score)
