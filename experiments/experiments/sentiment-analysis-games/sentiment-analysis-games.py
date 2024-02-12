@@ -12,11 +12,11 @@ from matplotlib import pyplot as plt
 dir_path = "./experiments/sentiment-analysis-games/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
-# Keep only relevat data
+# Keep only relevat columns
 df = df[["review", "voted_up"]]
 
 # Use only a sample of the data
-# df.sample(5)
+# df.sample(1000)
 
 # Preprocess data, trim, remove line breaks, remove shorts, remove duplicates
 df["review"] = df["review"].str.strip()
@@ -54,6 +54,27 @@ result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 # Save the result DataFrame as a CSV file
 result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
 print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
+
+
+# An utility function to quickly test the model
+def predict_sentiment(new_reviews):
+    new_reviews_vectorized = vectorizer.transform(new_reviews)
+    predictions = model.predict(new_reviews_vectorized)
+    return predictions
+
+
+# Play with the model
+y_play_pred = predict_sentiment(
+    [
+        "This game had me hooked from the start! The story was captivating, the characters were well-developed, and the world felt immersive. I never wanted to put it down.",
+        "This game takes a familiar genre and puts a fresh spin on it with unique mechanics and features. It kept me constantly surprised and engaged.",
+        "The visuals in this game are stunning, and the soundtrack is equally impressive. They really brought the world to life and enhanced the overall experience.",
+        "This game quickly became repetitive and grindy. I lost interest I did not like the game!",
+        "I encountered a lot of technical issues and bugs while playing this game, which ruined the experience for me.",
+    ]
+)
+print(y_play_pred)
+
 
 # Evaluate the model on the testing set
 y_pred = model.predict(X_test)
