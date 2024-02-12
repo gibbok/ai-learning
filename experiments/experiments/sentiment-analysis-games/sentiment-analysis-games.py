@@ -55,9 +55,6 @@ result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
 print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
 
-# Make a prediction using new unseen data
-
-
 # Evaluate the model on the testing set
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
