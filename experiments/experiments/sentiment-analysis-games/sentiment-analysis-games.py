@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Read data
 dir_path = "./experiments/sentiment-analysis-games/"
@@ -11,7 +12,7 @@ df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 # Keep only relevat data
 df = df[["review", "voted_up"]]
 
-# df.sample(100)
+# df.sample(5)
 
 # Preprocess data
 df["review"] = df["review"].str.strip()
@@ -47,3 +48,19 @@ result_df = df[["review", "true_sentiment", "predicted_sentiment"]]
 # Save the result DataFrame as a CSV file
 result_df.to_csv(os.path.join(dir_path, "sentiment_results.csv"), index=False)
 print("Results saved to", os.path.join(dir_path, "sentiment_results.csv"))
+
+
+# Evaluate the model on the testing set
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+# Print evaluation metrics
+print("Model evaluation:")
+# The accuracy of a model is the percentage of times that a model is correct.
+print(f"  Accuracy: {accuracy:.4f}")
+print(f"  Precision: {precision:.4f}")
+print(f"  Recall: {recall:.4f}")
+print(f"  F1-score: {f1:.4f}")
