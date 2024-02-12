@@ -3,15 +3,9 @@ AI learning project
 
 ## Commands
 
-To activate TensorFlow enviroment use:
+To run the project:
 
-```shall
-conda activate ai
+```bash
+cd experiments
+poetry shell
 ```
-
-To export the anaconda enviroment use:
-
-```shall
-conda env export > environment.yml
-```
-
