@@ -7,6 +7,7 @@ data = {
     "title": ["Film A", "Film B", "Film C"],
     "country": ["USA", "UK", "UK"],
     "listed_in": ["action, drama", "drama", "drama"],
+    "cast": ["person1, person2", "person1", "person1"],
 }
 df = pd.DataFrame(data)
 
@@ -20,11 +21,10 @@ print("-----------------")
 print(df_expanded[["title", "country", "listed_in_new"]])
 
 # how many `listed_in` we have?
-print("-----------------")
+print("--------- how many `listed_in` we have?")
 df_grouped_listed_in = df_expanded.groupby(["listed_in_new"]).count()
 print(df_grouped_listed_in)
 
 # list how many `listed_in` we have per `country`?
-df_grouped_country = df_expanded.groupby(["country"]).count()
-print("-----------------")
+print("--------- list how many `listed_in` we have per `country?")
 print(df_grouped_listed_in)
