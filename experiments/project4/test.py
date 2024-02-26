@@ -5,13 +5,15 @@ os.system("clear")
 
 # Example DataFrame
 data = {
-    "title": ["movie a", "movie b", "movie c"],
+    "title": ["movie a", "movie a", "movie b", "movie c", "movie d"],
     "listed_in_new": [
+        "drama",
         "drama",
         "commedy",
         "drama",
+        "drama",
     ],
-    "country": ["usa", "usa", "ita"],
+    "country": ["usa", "usa", "usa", "ita", "ita"],
 }
 df = pd.DataFrame(data)
 
@@ -38,11 +40,16 @@ temp_dict = {}
 # Loop through each unique country and filter titles
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
-    titles_country = filtered_df["title"].tolist()
-    # Create a temporary dictionary for current country
+    titles_country = filtered_df["title"].unique().tolist()
     temp_dict[country] = titles_country
 
 print(temp_dict)
+
+# titles_by_country = pd.DataFrame.from_dict(temp_dict)
+
+
+# print(titles_by_country)
+
 # Concatenate the list of dictionaries into a DataFrame
 # final_df = pd.concat(all_titles_df, ignore_index=True)
 

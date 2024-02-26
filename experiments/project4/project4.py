@@ -38,7 +38,13 @@ unique_title = df["title"].unique()
 print(unique_title)
 
 # List all `title` in every `country`
-print(df)
+temp_dict = {}
+for country in df["country"].unique():
+    filtered_df = df[df["country"] == country]
+    titles_country = filtered_df["title"].to_list()
+    temp_dict[country] = titles_country
+
+print(temp_dict)
 
 # # Count how many categories we have
 # grouped_data = df.groupby(["listed_in_new"]).count()
