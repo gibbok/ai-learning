@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+import json
+import matplotlib.pyplot as plt
 
 os.system("clear")
 
@@ -43,15 +45,7 @@ for country in df["country"].unique():
     titles_country = filtered_df["title"].unique().tolist()
     temp_dict[country] = titles_country
 
-print(temp_dict)
+# print(temp_dict)
 
-# titles_by_country = pd.DataFrame.from_dict(temp_dict)
-
-
-# print(titles_by_country)
-
-# Concatenate the list of dictionaries into a DataFrame
-# final_df = pd.concat(all_titles_df, ignore_index=True)
-
-# Print the final DataFrame with titles by country
-# print(final_df)
+json_string = json.dumps(temp_dict, indent=4)
+print(json_string)

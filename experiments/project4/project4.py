@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import json
 
 os.system("clear")
 
@@ -41,16 +42,18 @@ print(unique_title)
 temp_dict = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
-    titles_country = filtered_df["title"].to_list()
+    titles_country = filtered_df["title"].unique().tolist()
     temp_dict[country] = titles_country
 
-print(temp_dict)
+json_string = json.dumps(temp_dict, indent=4)
+print(json_string)
 
-# # Count how many categories we have
-# grouped_data = df.groupby(["listed_in_new"]).count()
-# print(grouped_data)
+# List all `listed_in_new` in every `country`
+temp_dict_listed_in_new = {}
+for country in df["country"].unique():
+    filtered_df = df[df["country"] == country]
+    listed_in_new_country = filtered_df["listed_in_new"].unique().tolist()
+    temp_dict_listed_in_new[country] = listed_in_new_country
 
-# # df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
-# # grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
-
-# # Count how many categories we have for each country
+json_string = json.dumps(temp_dict_listed_in_new, indent=4)
+print(json_string)
