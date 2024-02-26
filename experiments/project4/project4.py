@@ -5,7 +5,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:200]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -29,9 +29,9 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
-grouped_data = df.groupby(["country_new", "title"]).count()
+grouped_data = df.groupby(["listed_in_new"]).count()
 
-print(grouped_data)
+print(grouped_data[["title"]])
 
 # df[0:200].to_csv(os.path.join(dir_path, "results.csv"), index=False)
-grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
+# grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)

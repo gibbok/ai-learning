@@ -28,9 +28,3 @@ print(df_grouped_listed_in)
 df_grouped_country = df_expanded.groupby(["country"]).count()
 print("-----------------")
 print(df_grouped_listed_in)
-
-print("-----------------")
-# Group by 'country' and aggregate the 'listed_in' column
-result = df_grouped_listed_in.groupby("country")["listed_in_new"]
-
-print(result)
