@@ -5,7 +5,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:100]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:5]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -28,13 +28,14 @@ df = df.assign(director_new=df["director"].str.split(", ")).explode(
 df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
-print(df)
+
+
+# print(df)
 # Count how many categories we have
 grouped_data = df.groupby(["listed_in_new"]).count()
+print(grouped_data)
 
-# print(grouped_data[["title"]])
-
-df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
-grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
+# df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
+# grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
 
 # Count how many categories we have for each country

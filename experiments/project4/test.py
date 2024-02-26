@@ -3,28 +3,15 @@ import pandas as pd
 
 os.system("clear")
 
-data = {
-    "title": ["Film A", "Film B", "Film C"],
-    "country": ["USA", "UK", "UK"],
-    "listed_in": ["action, drama", "drama", "drama"],
-    "cast": ["person1, person2", "person1", "person1"],
-}
+# Example DataFrame
+data = {"A": [1, 2, 3, 1, 2, 3], "B": ["a", "b", "a", "a", "c", "c"]}
 df = pd.DataFrame(data)
 
-# explode the "country" column to split the comma-separated values into separate rows
-df_expanded = df.assign(listed_in_new=df["listed_in"].str.split(", ")).explode(
-    "listed_in_new", ignore_index=True
-)
+# Count unique elements in column 'A'
+unique_count_A = df["A"].nunique()
 
-print(df)
-print("-----------------")
-print(df_expanded[["title", "country", "listed_in_new"]])
+# Count unique elements in column 'B'
+unique_count_B = df["B"].nunique()
 
-# how many `listed_in` we have?
-print("--------- how many `listed_in` we have?")
-df_grouped_listed_in = df_expanded.groupby(["listed_in_new"]).count()
-print(df_grouped_listed_in)
-
-# list how many `listed_in` we have per `country`?
-print("--------- list how many `listed_in` we have per `country?")
-print(df_grouped_listed_in)
+print("Unique count in column 'A':", unique_count_A)
+print("Unique count in column 'B':", unique_count_B)
