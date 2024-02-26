@@ -4,14 +4,13 @@ import pandas as pd
 os.system("clear")
 
 # Example DataFrame
-data = {"A": [1, 2, 3, 1, 2, 3], "B": ["a", "b", "a", "a", "c", "c"]}
+data = {
+    "listed_in_new": ["drama", "commedy", "drama", "action", "action"],
+}
 df = pd.DataFrame(data)
 
 # Count unique elements in column 'A'
-unique_count_A = df["A"].nunique()
+unique = df["listed_in_new"].unique()
 
-# Count unique elements in column 'B'
-unique_count_B = df["B"].nunique()
 
-print("Unique count in column 'A':", unique_count_A)
-print("Unique count in column 'B':", unique_count_B)
+print("Unique in column 'A':", unique)

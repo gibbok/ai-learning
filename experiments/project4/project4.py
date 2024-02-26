@@ -29,13 +29,15 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
+# List all `listed_in_new`` in in all countries
+unique_listed_in_new = df["listed_in_new"].unique()
+print(unique_listed_in_new)
 
-# print(df)
-# Count how many categories we have
-grouped_data = df.groupby(["listed_in_new"]).count()
-print(grouped_data)
+# # Count how many categories we have
+# grouped_data = df.groupby(["listed_in_new"]).count()
+# print(grouped_data)
 
-# df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
-# grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
+# # df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
+# # grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
 
-# Count how many categories we have for each country
+# # Count how many categories we have for each country
