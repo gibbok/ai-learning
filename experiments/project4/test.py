@@ -19,4 +19,4 @@ df_expanded = df.assign(Type_new=df["Typ"].str.split(", ")).explode(
 
 print(df)
 print("-----------------")
-print(df_expanded)
+print(df_expanded[["Brand", "Model", "Type_new"]])
