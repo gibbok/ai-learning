@@ -1,17 +1,22 @@
+import os
 import pandas as pd
 
-data = pd.DataFrame(
-    {
-        "title": ["Dick Johnson Is Dead"],
-        "listed_in": ["Documentaries, International TV Shows, TV Dramas, TV Mysteries"],
-    }
+os.system("clear")
+
+data = {
+    "Brand": ["Ford", "Ford", "Ford"],
+    "Model": ["Sierra", "F-150", "Mustang"],
+    "Typ": ["2.0 GL", "Raptor", "Mach-E, Mach-1"],
+}
+df = pd.DataFrame(data)
+
+# Explode the "country" column to split the comma-separated values into separate rows
+df_expanded = df.assign(Type_new=df["Typ"].str.split(", ")).explode(
+    "Type_new", ignore_index=True
 )
 
-# Split the 'listed_in' column into a list and then explode it into separate rows
-data = (
-    data.assign(listed_in=data["listed_in"].str.split(", "))
-    .explode("listed_in")
-    .reset_index(drop=True)
-)
+# df_expanded = df.assign(country_new=df["country"].str.split(", "))
 
-print(data)
+print(df)
+print("-----------------")
+print(df_expanded)

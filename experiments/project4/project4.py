@@ -31,4 +31,9 @@ df = (
 
 df = df.assign(cast=df["cast"].str.split(", ")).explode("cast").reset_index(drop=True)
 
+grouped_data = df.groupby(["country", "title"]).size().reset_index(name="count")
+
+print(grouped_data)
+
 df.to_csv(os.path.join(dir_path, "results.csv"), index=False)
+# grouped_data.to_csv(os.path.join(dir_path, "results_grouped.csv"), index=False)
