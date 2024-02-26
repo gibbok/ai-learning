@@ -19,7 +19,8 @@ print(df)
 print("-----------------")
 print(df_expanded[["title", "country", "listed_in_new"]])
 
-df_grouped = df_expanded.groupby("listed_in_new").count()
+df_grouped = df_expanded.groupby(["listed_in_new"]).count()
 
+# ho2 many listed_in we have?
 print("-----------------")
 print(df_grouped)
