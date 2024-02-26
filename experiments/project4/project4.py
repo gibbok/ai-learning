@@ -29,13 +29,16 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
-# List all `listed_in_new`` in in all countries
+# List all `listed_in_new` in in all `country`
 unique_listed_in_new = df["listed_in_new"].unique()
 print(unique_listed_in_new)
 
-# List all `title` in all countries
+# List all `title` in all `country`
 unique_title = df["title"].unique()
 print(unique_title)
+
+# List all `title` in every `country`
+print(df)
 
 # # Count how many categories we have
 # grouped_data = df.groupby(["listed_in_new"]).count()
