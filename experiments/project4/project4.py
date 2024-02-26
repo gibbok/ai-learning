@@ -5,7 +5,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:5]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:50]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -32,6 +32,10 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
 # List all `listed_in_new`` in in all countries
 unique_listed_in_new = df["listed_in_new"].unique()
 print(unique_listed_in_new)
+
+# List all `title` in all countries
+unique_title = df["title"].unique()
+print(unique_title)
 
 # # Count how many categories we have
 # grouped_data = df.groupby(["listed_in_new"]).count()
