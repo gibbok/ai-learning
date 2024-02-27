@@ -22,19 +22,26 @@ data = {
 df = pd.DataFrame(data)
 
 # Group by release_year and count the occurrences of each type
-type_count_by_year = (
-    df.groupby(["release_year", "type"]).size().unstack(fill_value=0).transpose()
-)
+type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
+type_count_by_year = type_count_by_year.reset_index()
+
+release_year = type_count_by_year["release_year"].to_list()
+print(release_year)
+for type_value in type_count_by_year.columns:
+    count_values = []
+    for x in type_count_by_year[type_value]:
+        count_values.append(x)
+    plt.plot(release_year, count_values, label=type_value)
+    # print(type_count_by_year["release_year"], count_values, type_value)
+    print("----")
 
 
-print(type_count_by_year)
-
-# Plotting
-for col in type_count_by_year.columns:
-    plt.plot(type_count_by_year.index, type_count_by_year[col], marker="o", label=col)
-plt.title("Number of Releases by Type Over Years")
-plt.xlabel("Year")
-plt.ylabel("Number of Releases")
 plt.legend()
-plt.grid(True)
 plt.show()
+
+# release_year = type_count_by_year
+# type_cinema = [10, 20, 20]
+# type_tv = [5, 18, 30]
+# plot line
+# plt.plot(release_year, type_cinema, label="cinema")
+# plt.plot(release_year, type_tv, label="tv")

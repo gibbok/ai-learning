@@ -80,11 +80,3 @@ type_count_by_year = (
     df.groupby(["release_year", "type"]).size().unstack(fill_value=0).transpose()
 )
 print(type_count_by_year)
-for col in type_count_by_year.columns:
-    plt.plot(type_count_by_year.index, type_count_by_year[col], marker="o", label=col)
-plt.title("Number of Releases by Type Over Years")
-plt.xlabel("Year")
-plt.ylabel("Number of Releases")
-plt.legend()
-plt.grid(True)
-plt.show()
