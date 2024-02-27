@@ -19,11 +19,13 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# given a title show me all other titles in the same category
-# give a title, give me its category
-# search all titles for a category
-target_category = df[df["title"] == "movie a"].drop_duplicates().head()["listed_in_new"]
+# Group the DataFrame by 'listed_in_new' and get the titles
+grouped_titles = df.groupby("listed_in_new")["title"]
 
-movies_in_category = df[df["listed_in_new"].isin(target_category)].drop_duplicates()
-print("Movies in the", target_category.iloc[0], "category:")
-print(movies_in_category["title"].tolist())
+print(grouped_titles)
+
+# Loop through each group and print its category and titles
+# for category, titles in grouped_titles:
+#     print(f"Category: {category}")
+#     print(*titles.tolist(), sep="\n")  # Print titles one per line
+#     print("-" * 10)  # Print a separator for clarity

@@ -65,3 +65,13 @@ target_category = (
 movies_in_category = df[df["listed_in_new"].isin(target_category)]
 movies_in_category_list = set(movies_in_category["title"].to_list())
 print(movies_in_category_list)
+
+print("------ List all `title` in every `listed_in_new`")
+# Group the DataFrame by 'listed_in_new' and get the titles
+grouped_titles = df.groupby("listed_in_new")["title"].apply(pd.Series.unique)
+
+# Loop through each group and print its category and unique titles
+for category, titles in grouped_titles.items():
+    print(f"Category: {category}")
+    print(*titles.tolist(), sep="\n")  # Print unique titles one per line
+    print("-" * 10)  # Print a separator for clarity
