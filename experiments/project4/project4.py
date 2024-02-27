@@ -30,15 +30,15 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
-# List all `listed_in_new` in in all `country`
+print("------ List all `listed_in_new` in in all `country`")
 unique_listed_in_new = df["listed_in_new"].unique()
 print(unique_listed_in_new)
 
-# List all `title` in all `country`
+print("------ List all `title` in all `country`")
 unique_title = df["title"].unique()
 print(unique_title)
 
-# List all `title` in every `country`
+print("------ List all `title` in every `country`")
 temp_dict = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
@@ -48,7 +48,7 @@ for country in df["country"].unique():
 json_string = json.dumps(temp_dict, indent=4)
 print(json_string)
 
-# List all `listed_in_new` in every `country`
+print("------ List all `listed_in_new` in every `country`")
 temp_dict_listed_in_new = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]

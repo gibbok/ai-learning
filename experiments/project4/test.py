@@ -19,33 +19,11 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Count unique elements in column 'A'
-unique = df["listed_in_new"].unique()
-# print(df)
+# given a title show me all other titles in the same category
+# give a title, give me its category
+# search all titles for a category
+target_category = df[df["title"] == "movie a"].drop_duplicates().head()["listed_in_new"]
 
-filtered_df = df[df["country"] == "usa"]
-
-# Extract the titles from the filtered DataFrame
-
-# Print the titles
-# print(filtered_df)
-
-# Loop through each unique country and print titles
-# for country in df["country"].unique():
-#     filtered_df = df[df["country"] == country]
-#     titles_country = filtered_df["title"].tolist()
-#     print(f"Titles from {country}: {titles_country}")
-
-
-temp_dict = {}
-
-# Loop through each unique country and filter titles
-for country in df["country"].unique():
-    filtered_df = df[df["country"] == country]
-    titles_country = filtered_df["title"].unique().tolist()
-    temp_dict[country] = titles_country
-
-# print(temp_dict)
-
-json_string = json.dumps(temp_dict, indent=4)
-print(json_string)
+movies_in_category = df[df["listed_in_new"].isin(target_category)].drop_duplicates()
+print("Movies in the", target_category.iloc[0], "category:")
+print(movies_in_category["title"].tolist())
