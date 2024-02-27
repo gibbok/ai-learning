@@ -28,33 +28,33 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
-print("------ List all `listed_in_new` in in all `country`")
+print("\n------ List all categories in all country")
 unique_listed_in_new = df["listed_in_new"].unique()
 print(unique_listed_in_new)
 
-print("------ List all `title` in all `country`")
+print("\n------ List all titles in all country")
 unique_title = df["title"].unique()
 print(unique_title)
 
-print("------ List all `title` in every `country`")
+print("\n------ List all titles by country")
 temp_dict = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
     titles_country = filtered_df["title"].unique().tolist()
     temp_dict[country] = titles_country
-json_string = json.dumps(temp_dict, indent=4)
-print(json_string)
+json_string_titles = json.dumps(temp_dict, indent=4)
+print(json_string_titles)
 
-print("------ List all `listed_in_new` in every `country`")
+print("\n------ List all category by country")
 temp_dict_listed_in_new = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
     listed_in_new_country = filtered_df["listed_in_new"].unique().tolist()
     temp_dict_listed_in_new[country] = listed_in_new_country
-json_string = json.dumps(temp_dict_listed_in_new, indent=4)
-print(json_string)
+json_string_category = json.dumps(temp_dict_listed_in_new, indent=4)
+print(json_string_category)
 
-print("------ Given a title show me all other titles in the same category)")
+print("\n------ Given a title show all other titles in the same category)")
 target_category = (
     df[df["title"] == "Angry Birds"].drop_duplicates().head()["listed_in_new"]
 )
@@ -62,18 +62,17 @@ movies_in_category = df[df["listed_in_new"].isin(target_category)]
 movies_in_category_list = set(movies_in_category["title"].to_list())
 print(movies_in_category_list)
 
-print("------ List all `title` in every `listed_in_new`")
+print("\n------ List all titles in every category")
 grouped_titles = df.groupby("listed_in_new")["title"].apply(pd.Series.unique)
 for category, titles in grouped_titles.items():
     print(f"Category: {category}")
     print(*titles.tolist(), sep="\n")
     print("-" * 10)
 
-print("------ Show number of TV snows compare to movies by year with a chart")
+print("\n------ Show number of TV shows compare to movies by year with a chart")
 type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
 type_count_by_year = type_count_by_year.reset_index()
 release_year = type_count_by_year["release_year"].to_list()
-
 plt.title("Number of Releases by Type Over Years")
 plt.xlabel("Year")
 plt.ylabel("Number of Releases")
