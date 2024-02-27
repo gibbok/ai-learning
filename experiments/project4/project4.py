@@ -57,3 +57,11 @@ for country in df["country"].unique():
 
 json_string = json.dumps(temp_dict_listed_in_new, indent=4)
 print(json_string)
+
+print("------ Given a title show me all other titles in the same category)")
+target_category = (
+    df[df["title"] == "Angry Birds"].drop_duplicates().head()["listed_in_new"]
+)
+movies_in_category = df[df["listed_in_new"].isin(target_category)]
+movies_in_category_list = set(movies_in_category["title"].to_list())
+print(movies_in_category_list)
