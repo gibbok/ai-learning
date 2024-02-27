@@ -7,7 +7,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:50]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
