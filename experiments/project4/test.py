@@ -8,6 +8,8 @@ os.system("clear")
 # Example DataFrame
 data = {
     "title": ["movie a", "movie a", "movie b", "movie c", "movie d"],
+    "type": ["tv", "cinema", "tv", "cinema", "cinema"],
+    "release_year": [2020, 2020, 2021, 2022, 2022],
     "listed_in_new": [
         "drama",
         "drama",
@@ -19,13 +21,20 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Group the DataFrame by 'listed_in_new' and get the titles
-grouped_titles = df.groupby("listed_in_new")["title"]
+# Group by release_year and count the occurrences of each type
+type_count_by_year = (
+    df.groupby(["release_year", "type"]).size().unstack(fill_value=0).transpose()
+)
 
-print(grouped_titles)
 
-# Loop through each group and print its category and titles
-# for category, titles in grouped_titles:
-#     print(f"Category: {category}")
-#     print(*titles.tolist(), sep="\n")  # Print titles one per line
-#     print("-" * 10)  # Print a separator for clarity
+print(type_count_by_year)
+
+# Plotting
+for col in type_count_by_year.columns:
+    plt.plot(type_count_by_year.index, type_count_by_year[col], marker="o", label=col)
+plt.title("Number of Releases by Type Over Years")
+plt.xlabel("Year")
+plt.ylabel("Number of Releases")
+plt.legend()
+plt.grid(True)
+plt.show()

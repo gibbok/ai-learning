@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import json
+import matplotlib.pyplot as plt
 
 os.system("clear")
 
@@ -67,11 +68,23 @@ movies_in_category_list = set(movies_in_category["title"].to_list())
 print(movies_in_category_list)
 
 print("------ List all `title` in every `listed_in_new`")
-# Group the DataFrame by 'listed_in_new' and get the titles
 grouped_titles = df.groupby("listed_in_new")["title"].apply(pd.Series.unique)
-
-# Loop through each group and print its category and unique titles
 for category, titles in grouped_titles.items():
     print(f"Category: {category}")
     print(*titles.tolist(), sep="\n")  # Print unique titles one per line
     print("-" * 10)  # Print a separator for clarity
+
+print("------ Show number of TV snows compare to movies by year")
+# Group by release_year and count the occurrences of each type
+type_count_by_year = (
+    df.groupby(["release_year", "type"]).size().unstack(fill_value=0).transpose()
+)
+print(type_count_by_year)
+for col in type_count_by_year.columns:
+    plt.plot(type_count_by_year.index, type_count_by_year[col], marker="o", label=col)
+plt.title("Number of Releases by Type Over Years")
+plt.xlabel("Year")
+plt.ylabel("Number of Releases")
+plt.legend()
+plt.grid(True)
+plt.show()
