@@ -28,6 +28,8 @@ type_count_by_year = type_count_by_year.reset_index()
 release_year = type_count_by_year["release_year"].to_list()
 print(release_year)
 for type_value in type_count_by_year.columns:
+    if type_value == "release_year":
+        continue
     count_values = []
     for x in type_count_by_year[type_value]:
         count_values.append(x)
