@@ -13,7 +13,7 @@ os.system("clear")
 dir_path = "./experiments/project5/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
-df_education = df[["education", "education-num"]].drop_duplicates().to_dict()
+df_education = df[["education", "education-num"]].drop_duplicates()
 
 # Encode categorical variables
 label_encoders = {}
@@ -97,14 +97,30 @@ input_2 = {
 print("Predicted salary 2:", predict_salary(input_2))
 
 
-print(df_education["education"])
-print(df["education-num"])
+# print(df_education["education"])
+# print(df["education-num"])
 
+print(df_education["education-num"].to_list())
+print(df_education["education"].to_list())
 # Plot
 fig, (axes) = plt.subplots(2, 2, figsize=(12, 6))
 plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2, ax=axes[0, 0])
 sns.kdeplot(df["age"], ax=axes[0, 1])
 sns.kdeplot(df["hours-per-week"], ax=axes[1, 1])
-sns.kdeplot(df["education-num"], ax=axes[1, 0])
+g = sns.kdeplot(
+    df,
+    x="education-num",
+    ax=axes[1, 0],
+)
+g.set_xticks(
+    df_education["education-num"].to_list(),
+)
+g.set_xticklabels(labels=df_education["education"].to_list())
+# plt.xticks(
+#     ticks=df_education["education-num"].to_list(),
+#     labels=df_education["education"].to_list(),
+#     rotation=45,
+#     # ax=axes[1, 0],
+# )
 plt.tight_layout()
 plt.show()
