@@ -8,8 +8,8 @@ os.system("clear")
 
 # Example DataFrame
 data = {
-    "title": ["movie a", "movie a", "movie b", "movie c", "movie d"],
-    "type": ["tv", "cinema", "tv", "cinema", "cinema"],
+    "title": ["Terminator", "movie a", "movie b", "movie c", "True Lies"],
+    "type": ["cinema", "cinema", "tv", "cinema", "cinema"],
     "release_year": [2020, 2020, 2021, 2022, 2022],
     "listed_in_new": [
         "drama",
@@ -20,22 +20,30 @@ data = {
     ],
     "country": ["usa", "usa", "usa", "ita", "ita"],
     "director_new": [
-        "director_a",
+        "James Cameron",
         "director_b",
         "director_b",
         "director_c",
-        "director_d",
+        "James Cameron",
     ],
-    "cast_new": ["cast_a", "cast_a", "cast_b", "cast_b", "cast_c"],
+    "cast_new": [
+        "Arnold Schwarzenegger",
+        "cast_a",
+        "cast_b",
+        "cast_b",
+        "Arnold Schwarzenegger",
+    ],
 }
 df = pd.DataFrame(data)
 
-grouped = (
-    df.groupby("title")["director_new"].apply(list).reset_index(name="director_new")
-)
-new_df = grouped.explode("director_new")
+grouped = df.groupby(["director_new", "cast_new"]).size().reset_index(name="count")
 
-print(new_df)
+
+print(grouped)
+
+# df_network = pd.DataFrame(
+#     {"from": ["A", "B", "C", "A", "A", "B"], "to": ["D", "A", "E", "C", "E", "E"]}
+# )
 
 # # Build a dataframe with 4 connections
 # df = pd.DataFrame(
