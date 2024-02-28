@@ -42,39 +42,39 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
 # Example usage with new data
+new_data = {
+    "age": [20],
+    "workclass": ["Local-gov"],
+    "fnlwgt": [125927],
+    "education": ["7th-8th"],
+    "education-num": [4],
+    "marital-status": ["Never-married"],
+    "occupation": ["Farming-fishing"],
+    "relationship": ["Not-in-family"],
+    "race": ["Asian-Pac-Islander"],
+    "sex": ["Female"],
+    "capital-gain": [1573],
+    "capital-loss": [0],
+    "hours-per-week": [35],
+    "native-country": ["Cuba"],
+}
+
 # new_data = {
-#     "age": [39],
-#     "workclass": ["State-gov"],
-#     "fnlwgt": [77516],
-#     "education": ["Bachelors"],
-#     "education-num": [13],
-#     "marital-status": ["Never-married"],
-#     "occupation": ["Adm-clerical"],
-#     "relationship": ["Not-in-family"],
+#     "age": [38],
+#     "workclass": ["Private"],
+#     "fnlwgt": [215646],
+#     "education": ["Masters"],
+#     "education-num": [14],
+#     "marital-status": ["Married-civ-spouse"],
+#     "occupation": ["Prof-specialty"],
+#     "relationship": ["NHusband"],
 #     "race": ["White"],
 #     "sex": ["Male"],
-#     "capital-gain": [21740],
+#     "capital-gain": [14344],
 #     "capital-loss": [0],
-#     "hours-per-week": [40],
+#     "hours-per-week": [48],
 #     "native-country": ["United-States"],
 # }
-
-new_data = {
-    "age": [38],
-    "workclass": ["Private"],
-    "fnlwgt": [215646],
-    "education": ["HS-grad"],
-    "education-num": [9],
-    "marital-status": ["Divorced"],
-    "occupation": ["Handlers-cleaners"],
-    "relationship": ["Not-in-family"],
-    "race": ["White"],
-    "sex": ["Male"],
-    "capital-gain": [0],
-    "capital-loss": [0],
-    "hours-per-week": [40],
-    "native-country": ["United-States"],
-}
 
 # Convert new data to DataFrame
 new_df = pd.DataFrame(new_data)
@@ -94,9 +94,9 @@ print("Predicted salary:", predicted_salary)
 
 
 # Plot the tree
-# plt.figure(figsize=(12, 6))
-# plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
-# plt.show()
+plt.figure(figsize=(12, 6))
+plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
+plt.show()
 
 # # Plot histogram
 # sns.kdeplot(df["age"])
