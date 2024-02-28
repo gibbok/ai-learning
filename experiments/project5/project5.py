@@ -10,7 +10,7 @@ os.system("clear")
 
 # Read data
 dir_path = "./experiments/project5/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:50]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:100]
 
 print(df)
 
@@ -75,6 +75,7 @@ predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
 print("Predicted salary:", predicted_salary)
 
 
-plt.figure(figsize=(12, 6))  # Adjust figure size as needed
+# Plot the tree
+plt.figure(figsize=(12, 6))
 plot_tree(model, rounded=True, feature_names=X.columns)
 plt.show()
