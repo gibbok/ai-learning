@@ -41,8 +41,23 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
+
+def predict_salary(data):
+    new_df = pd.DataFrame(data)
+    # Encode categorical variables
+    label_encoders_2 = {}
+    for column in new_df.select_dtypes(include=["object"]).columns:
+        label_encoders_2[column] = LabelEncoder()
+        new_df[column] = label_encoders[column].fit_transform(new_df[column])
+    # Predict using the trained model
+    prediction = model.predict(new_df)
+    # Map predicted label to readable salary
+    predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
+    return predicted_salary
+
+
 # Example usage with new data
-new_data = {
+input_1 = {
     "age": [20],
     "workclass": ["Local-gov"],
     "fnlwgt": [125927],
@@ -58,42 +73,28 @@ new_data = {
     "hours-per-week": [35],
     "native-country": ["Cuba"],
 }
+print("Predicted salary 1:", predict_salary(input_1))
 
-# new_data = {
-#     "age": [38],
-#     "workclass": ["Private"],
-#     "fnlwgt": [215646],
-#     "education": ["Masters"],
-#     "education-num": [14],
-#     "marital-status": ["Married-civ-spouse"],
-#     "occupation": ["Prof-specialty"],
-#     "relationship": ["NHusband"],
-#     "race": ["White"],
-#     "sex": ["Male"],
-#     "capital-gain": [14344],
-#     "capital-loss": [0],
-#     "hours-per-week": [48],
-#     "native-country": ["United-States"],
-# }
+input_2 = {
+    "age": [38],
+    "workclass": ["Private"],
+    "fnlwgt": [215646],
+    "education": ["Masters"],
+    "education-num": [14],
+    "marital-status": ["Married-civ-spouse"],
+    "occupation": ["Prof-specialty"],
+    "relationship": ["NHusband"],
+    "race": ["White"],
+    "sex": ["Male"],
+    "capital-gain": [14344],
+    "capital-loss": [0],
+    "hours-per-week": [48],
+    "native-country": ["United-States"],
+}
 
-# Convert new data to DataFrame
-new_df = pd.DataFrame(new_data)
+print("Predicted salary 2:", predict_salary(input_2))
 
-# Encode categorical variables
-label_encoders_2 = {}
-for column in new_df.select_dtypes(include=["object"]).columns:
-    label_encoders_2[column] = LabelEncoder()
-    new_df[column] = label_encoders[column].fit_transform(new_df[column])
-
-# Predict using the trained model
-prediction = model.predict(new_df)
-
-# Map predicted label to readable salary
-predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
-print("Predicted salary:", predicted_salary)
-
-
-# Plot the tree
+# Plot the modal tree
 plt.figure(figsize=(12, 6))
 plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
 plt.show()
