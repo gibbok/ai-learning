@@ -2,12 +2,11 @@
 
 ## Input
 
-A list of salaries. 
+A list of salaries.
 
 [Source data](https://www.kaggle.com/datasets/aemyjutt/salary-binary-classifier)
 
 ## Output
 
-Analyse the data and answer the following questions:
-
-- Predict a salary using decision tree
+- Analyse frequency in the data
+- Predict label salary using other features
