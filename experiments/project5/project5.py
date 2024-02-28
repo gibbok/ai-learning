@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import OneHotEncoder
 
 os.system("clear")
 
@@ -38,32 +39,3 @@ y_pred = model.predict(X_test)
 # Calculate accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
-
-# # Example usage with new data
-# new_data = {
-#     "age": [45],
-#     "workclass": ["Private"],
-#     "fnlwgt": [83311],
-#     "education": ["Bachelors"],
-#     "education-num": [13],
-#     "marital-status": ["Married-civ-spouse"],
-#     "occupation": ["Exec-managerial"],
-#     "relationship": ["Husband"],
-#     "race": ["White"],
-#     "sex": ["Male"],
-#     "capital-gain": [0],
-#     "capital-loss": [0],
-#     "hours-per-week": [40],
-#     "native-country": ["United-States"],
-# }
-
-# # Convert new data to DataFrame
-# new_df = pd.DataFrame(new_data)
-
-# # Encode categorical variables
-# for column in new_df.select_dtypes(include=["object"]).columns:
-#     new_df[column] = label_encoders[column].transform(new_df[column])
-
-# # Predict using the trained model
-# prediction = model.predict(new_df)
-# print("Predicted salary:", prediction[0])
