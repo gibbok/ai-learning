@@ -6,7 +6,6 @@ A list of movies information from Netflix.
 
 [Source data](https://www.kaggle.com/datasets/shivamb/netflix-shows)
 
-
 ## Output
 
 Analyse the data and answer the following questions:
@@ -18,4 +17,4 @@ Analyse the data and answer the following questions:
 
 ## Notes
 
-- The network diagram takes ages to plot with the full dataset, so only a subset of the data is used [0:5000]
+- The network diagram takes ages to plot with the full dataset, so only a subset of the data is used [0:2000]
