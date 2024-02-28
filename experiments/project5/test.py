@@ -150,6 +150,8 @@ new_df = pd.DataFrame(new_data)
 for column in new_df.select_dtypes(include=["object"]).columns:
     new_df[column] = label_encoders[column].transform(new_df[column])
 
+print(new_df)
+
 # Predict using the trained model
 prediction = model.predict(new_df)
 print("Predicted salary:", prediction[0])
