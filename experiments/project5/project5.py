@@ -13,6 +13,7 @@ os.system("clear")
 dir_path = "./experiments/project5/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
+# Associated education to education enum
 df_education = df[["education", "education-num"]].drop_duplicates()
 
 # Encode categorical variables
