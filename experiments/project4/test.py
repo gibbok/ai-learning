@@ -43,21 +43,7 @@ print(grouped)
 
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
 
+graphic = nx.from_pandas_edgelist(df_network, "from", "to")
 
-G = nx.from_pandas_edgelist(df_network, "from", "to")
-
-nx.draw(G, with_labels=True)
+nx.draw(graphic, with_labels=True)
 plt.show()
-
-# working example
-# # Build a dataframe with 4 connections
-# df = pd.DataFrame(
-#     {"from": ["A", "B", "C", "A", "A", "B"], "to": ["D", "A", "E", "C", "E", "E"]}
-# )
-
-# # Build your graph
-# G = nx.from_pandas_edgelist(df, "from", "to")
-
-# # Plot it
-# nx.draw(G, with_labels=True)
-# plt.show()

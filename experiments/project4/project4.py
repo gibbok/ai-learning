@@ -93,6 +93,6 @@ print("\n------ Show Network analysis of Actors / Directors")
 grouped = df[["director_new", "cast_new"]]
 print(grouped)
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
-G = nx.from_pandas_edgelist(df_network, "from", "to")
-nx.draw(G, with_labels=True)
+graphic = nx.from_pandas_edgelist(df_network, "from", "to")
+nx.draw(graphic, with_labels=True)
 plt.show()
