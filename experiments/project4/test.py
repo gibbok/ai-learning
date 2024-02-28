@@ -29,14 +29,22 @@ data = {
     "cast_new": ["cast_a", "cast_a", "cast_b", "cast_b", "cast_c"],
 }
 df = pd.DataFrame(data)
-# Build a dataframe with 4 connections
-df = pd.DataFrame(
-    {"from": ["A", "B", "C", "A", "A", "B"], "to": ["D", "A", "E", "C", "E", "E"]}
+
+grouped = (
+    df.groupby("title")["director_new"].apply(list).reset_index(name="director_new")
 )
+new_df = grouped.explode("director_new")
 
-# Build your graph
-G = nx.from_pandas_edgelist(df, "from", "to")
+print(new_df)
 
-# Plot it
-nx.draw(G, with_labels=True)
-plt.show()
+# # Build a dataframe with 4 connections
+# df = pd.DataFrame(
+#     {"from": ["A", "B", "C", "A", "A", "B"], "to": ["D", "A", "E", "C", "E", "E"]}
+# )
+
+# # Build your graph
+# G = nx.from_pandas_edgelist(df, "from", "to")
+
+# # Plot it
+# nx.draw(G, with_labels=True)
+# plt.show()
