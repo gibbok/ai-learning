@@ -6,3 +6,5 @@ p3:
 	python3 experiments/project3/project3.py
 p4:
 	python3 experiments/project4/project4.py
+p5:
+	python5 experiments/project5/project5.py
