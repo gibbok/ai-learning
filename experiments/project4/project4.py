@@ -6,7 +6,7 @@ import networkx as nx
 
 os.system("clear")
 
-# Read
+# Read data
 dir_path = "./experiments/project4/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
@@ -38,12 +38,12 @@ unique_title = df["title"].unique()
 print(unique_title)
 
 print("\n------ List all titles by country")
-temp_dict = {}
+temp_dict_titles = {}
 for country in df["country"].unique():
     filtered_df = df[df["country"] == country]
     titles_country = filtered_df["title"].unique().tolist()
-    temp_dict[country] = titles_country
-json_string_titles = json.dumps(temp_dict, indent=4)
+    temp_dict_titles[country] = titles_country
+json_string_titles = json.dumps(temp_dict_titles, indent=4)
 print(json_string_titles)
 
 print("\n------ List all category by country")
@@ -70,7 +70,7 @@ for category, titles in grouped_titles.items():
     print(*titles.tolist(), sep="\n")
     print("-" * 10)
 
-# Charts
+# Plotting
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 print("\n------ Chart: Network analysis of Actors / Directors")
