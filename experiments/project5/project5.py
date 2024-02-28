@@ -5,6 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 os.system("clear")
 
@@ -75,7 +76,10 @@ predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
 print("Predicted salary:", predicted_salary)
 
 
-# Plot the tree
-plt.figure(figsize=(12, 6))
-plot_tree(model, rounded=True, feature_names=X.columns)
+# # Plot the tree
+# plt.figure(figsize=(12, 6))
+# plot_tree(model, rounded=True, feature_names=X.columns)
+# plt.show()
+
+sns.kdeplot(df["age"])
 plt.show()
