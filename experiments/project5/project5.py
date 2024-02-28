@@ -98,6 +98,7 @@ print("Predicted salary 2:", predict_salary(input_2))
 
 # Plot model
 fig, (axes) = plt.subplots(2, 2, figsize=(12, 6))
+
 plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2, ax=axes[0, 0])
 sns.kdeplot(df["age"], ax=axes[0, 1])
 sns.kdeplot(df["hours-per-week"], ax=axes[1, 1])
