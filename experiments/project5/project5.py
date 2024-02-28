@@ -11,7 +11,7 @@ os.system("clear")
 
 # Read data
 dir_path = "./experiments/project5/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:100]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
 print(df)
 
@@ -76,10 +76,11 @@ predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
 print("Predicted salary:", predicted_salary)
 
 
-# # Plot the tree
-# plt.figure(figsize=(12, 6))
-# plot_tree(model, rounded=True, feature_names=X.columns)
-# plt.show()
-
-sns.kdeplot(df["age"])
+# Plot the tree
+plt.figure(figsize=(12, 6))
+plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
 plt.show()
+
+# # Plot histogram
+# sns.kdeplot(df["age"])
+# plt.show()
