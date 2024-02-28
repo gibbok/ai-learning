@@ -13,12 +13,12 @@ os.system("clear")
 dir_path = "./experiments/project5/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
-print(df)
-
 # Encode categorical variables
 label_encoders = {}
 for column in df.select_dtypes(include=["object"]).columns:
-    label_encoders[column] = LabelEncoder()
+    label_encoders[column] = (
+        LabelEncoder()
+    )  #  Transform non-numerical labels to numerical labels
     df[column] = label_encoders[column].fit_transform(df[column])
 
 # Split features and target
@@ -87,7 +87,7 @@ for column in new_df.select_dtypes(include=["object"]).columns:
 
 # Predict using the trained model
 prediction = model.predict(new_df)
-print(prediction)
+
 # Map predicted label to readable salary
 predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
 print("Predicted salary:", predicted_salary)
