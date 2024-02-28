@@ -96,12 +96,6 @@ input_2 = {
 
 print("Predicted salary 2:", predict_salary(input_2))
 
-
-# print(df_education["education"])
-# print(df["education-num"])
-
-print(df_education["education-num"].to_list())
-print(df_education["education"].to_list())
 # Plot
 fig, (axes) = plt.subplots(2, 2, figsize=(12, 6))
 plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2, ax=axes[0, 0])
@@ -112,15 +106,7 @@ g = sns.kdeplot(
     x="education-num",
     ax=axes[1, 0],
 )
-g.set_xticks(
-    df_education["education-num"].to_list(),
-)
-g.set_xticklabels(labels=df_education["education"].to_list())
-# plt.xticks(
-#     ticks=df_education["education-num"].to_list(),
-#     labels=df_education["education"].to_list(),
-#     rotation=45,
-#     # ax=axes[1, 0],
-# )
+g.set_xticks(df_education["education-num"].to_list())
+g.set_xticklabels(labels=df_education["education"].to_list(), rotation=45)
 plt.tight_layout()
 plt.show()
