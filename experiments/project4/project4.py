@@ -2,12 +2,13 @@ import os
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
+import networkx as nx
 
 os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:10]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:200]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -71,19 +72,27 @@ for category, titles in grouped_titles.items():
     print(*titles.tolist(), sep="\n")
     print("-" * 10)
 
-print("\n------ Show number of TV shows compare to movies by year with a chart")
-type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
-type_count_by_year = type_count_by_year.reset_index()
-release_year = type_count_by_year["release_year"].to_list()
-plt.title("Number of Releases by Type Over Years")
-plt.xlabel("Year")
-plt.ylabel("Number of Releases")
-for type_value in type_count_by_year.columns:
-    if type_value == "release_year":
-        continue
-    count_values = []
-    for x in type_count_by_year[type_value]:
-        count_values.append(x)
-    plt.plot(release_year, count_values, label=type_value)
-plt.legend()
+# print("\n------ Show number of TV shows compare to movies by year with a chart")
+# type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
+# type_count_by_year = type_count_by_year.reset_index()
+# release_year = type_count_by_year["release_year"].to_list()
+# plt.title("Number of Releases by Type Over Years")
+# plt.xlabel("Year")
+# plt.ylabel("Number of Releases")
+# for type_value in type_count_by_year.columns:
+#     if type_value == "release_year":
+#         continue
+#     count_values = []
+#     for x in type_count_by_year[type_value]:
+#         count_values.append(x)
+#     plt.plot(release_year, count_values, label=type_value)
+# plt.legend()
+# plt.show()
+
+print("\n------ Show Network analysis of Actors / Directors")
+grouped = df[["director_new", "cast_new"]]
+print(grouped)
+df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
+G = nx.from_pandas_edgelist(df_network, "from", "to")
+nx.draw(G, with_labels=True)
 plt.show()
