@@ -29,8 +29,6 @@ df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
 
-print(df)
-
 print("\n------ List all categories in all country")
 unique_listed_in_new = df["listed_in_new"].unique()
 print(unique_listed_in_new)
@@ -72,10 +70,10 @@ for category, titles in grouped_titles.items():
     print(*titles.tolist(), sep="\n")
     print("-" * 10)
 
-# Plotting configurations
+# Charts
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
-print("\n------ Show Network analysis of Actors / Directors")
+print("\n------ Chart: Network analysis of Actors / Directors")
 grouped = df[["director_new", "cast_new"]]
 print(grouped)
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
@@ -84,14 +82,13 @@ G = nx.from_pandas_edgelist(df_network, "from", "to")
 pos = nx.spring_layout(G)
 nx.draw(G, pos, with_labels=True)
 
-print("\n------ Show number of TV shows compare to movies by year with a chart")
+print("\n------ Chart: Show number of TV shows compare to movies by year")
 type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
 type_count_by_year = type_count_by_year.reset_index()
 release_year = type_count_by_year["release_year"].to_list()
 ax1.set_title("Number of Releases by Type Over Years")
 ax1.set_xlabel("Year")
 ax1.set_ylabel("Number of Releases")
-
 for type_value in type_count_by_year.columns:
     if type_value == "release_year":
         continue
@@ -100,5 +97,6 @@ for type_value in type_count_by_year.columns:
         count_values.append(x)
     ax1.plot(release_year, count_values, label=type_value)
 ax1.legend()
+
 plt.tight_layout()
 plt.show()
