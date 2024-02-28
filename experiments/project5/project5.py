@@ -2,15 +2,15 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import OneHotEncoder
+import matplotlib.pyplot as plt
 
 os.system("clear")
 
 # Read data
 dir_path = "./experiments/project5/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:50]
 
 print(df)
 
@@ -42,17 +42,17 @@ print("Accuracy:", accuracy)
 
 # Example usage with new data
 new_data = {
-    "age": [45],
-    "workclass": ["Private"],
-    "fnlwgt": [83311],
+    "age": [39],
+    "workclass": ["State-gov"],
+    "fnlwgt": [77516],
     "education": ["Bachelors"],
     "education-num": [13],
-    "marital-status": ["Married-civ-spouse"],
-    "occupation": ["Exec-managerial"],
-    "relationship": ["Husband"],
+    "marital-status": ["Never-married"],
+    "occupation": ["Adm-clerical"],
+    "relationship": ["Not-in-family"],
     "race": ["White"],
     "sex": ["Male"],
-    "capital-gain": [0],
+    "capital-gain": [21740],
     "capital-loss": [0],
     "hours-per-week": [40],
     "native-country": ["United-States"],
@@ -67,8 +67,14 @@ for column in new_df.select_dtypes(include=["object"]).columns:
     label_encoders_2[column] = LabelEncoder()
     new_df[column] = label_encoders[column].fit_transform(new_df[column])
 
-print(label_encoders_2)
-
 # Predict using the trained model
 prediction = model.predict(new_df)
-print("Predicted salary:", prediction[0])
+
+# Map predicted label to readable salary
+predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
+print("Predicted salary:", predicted_salary)
+
+
+plt.figure(figsize=(12, 6))  # Adjust figure size as needed
+plot_tree(model, rounded=True, feature_names=X.columns)
+plt.show()

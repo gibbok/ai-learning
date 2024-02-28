@@ -127,30 +127,31 @@ print("Accuracy:", accuracy)
 
 # Example usage with new data
 new_data = {
-    "age": [45],
-    "workclass": ["Private"],
-    "fnlwgt": [83311],
+    "age": [39],
+    "workclass": ["State-gov"],
+    "fnlwgt": [77516],
     "education": ["Bachelors"],
     "education-num": [13],
-    "marital-status": ["Married-civ-spouse"],
-    "occupation": ["Exec-managerial"],
-    "relationship": ["Husband"],
+    "marital-status": ["Never-married"],
+    "occupation": ["Adm-clerical"],
+    "relationship": ["Not-in-family"],
     "race": ["White"],
     "sex": ["Male"],
-    "capital-gain": [0],
+    "capital-gain": [21740],
     "capital-loss": [0],
     "hours-per-week": [40],
     "native-country": ["United-States"],
 }
 
+
 # Convert new data to DataFrame
 new_df = pd.DataFrame(new_data)
 
 # Encode categorical variables
+label_encoders_2 = {}
 for column in new_df.select_dtypes(include=["object"]).columns:
-    new_df[column] = label_encoders[column].transform(new_df[column])
-
-print(new_df)
+    label_encoders_2[column] = LabelEncoder()
+    new_df[column] = label_encoders[column].fit_transform(new_df[column])
 
 # Predict using the trained model
 prediction = model.predict(new_df)
