@@ -19,6 +19,14 @@ data = {
         "drama",
     ],
     "country": ["usa", "usa", "usa", "ita", "ita"],
+    "director_new": [
+        "director_a",
+        "director_b",
+        "director_b",
+        "director_c",
+        "director_d",
+    ],
+    "cast_new": ["cast_a", "cast_a", "cast_b", "cast_b", "cast_c"],
 }
 df = pd.DataFrame(data)
 # Build a dataframe with 4 connections

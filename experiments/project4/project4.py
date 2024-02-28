@@ -7,7 +7,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:10]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -27,6 +27,8 @@ df = df.assign(director_new=df["director"].str.split(", ")).explode(
 df = df.assign(cast_new=df["cast"].str.split(", ")).explode(
     "cast_new", ignore_index=True
 )
+
+print(df)
 
 print("\n------ List all categories in all country")
 unique_listed_in_new = df["listed_in_new"].unique()
