@@ -8,7 +8,7 @@ os.system("clear")
 
 # Read
 dir_path = "./experiments/project4/"
-df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:50]
+df = pd.read_csv(os.path.join(dir_path, "data.csv"))[0:100]
 
 # Remove rows with no 'country'
 df = df.dropna(subset=["country"])
@@ -72,7 +72,7 @@ for category, titles in grouped_titles.items():
     print(*titles.tolist(), sep="\n")
     print("-" * 10)
 
-
+# Plotting configurations
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 print("\n------ Show Network analysis of Actors / Directors")
@@ -84,7 +84,6 @@ G = nx.from_pandas_edgelist(df_network, "from", "to")
 pos = nx.spring_layout(G)
 nx.draw(G, pos, with_labels=True)
 
-
 print("\n------ Show number of TV shows compare to movies by year with a chart")
 type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
 type_count_by_year = type_count_by_year.reset_index()
@@ -92,7 +91,7 @@ release_year = type_count_by_year["release_year"].to_list()
 ax1.set_title("Number of Releases by Type Over Years")
 ax1.set_xlabel("Year")
 ax1.set_ylabel("Number of Releases")
-ax1.legend()
+
 for type_value in type_count_by_year.columns:
     if type_value == "release_year":
         continue
@@ -100,6 +99,6 @@ for type_value in type_count_by_year.columns:
     for x in type_count_by_year[type_value]:
         count_values.append(x)
     ax1.plot(release_year, count_values, label=type_value)
-
+ax1.legend()
 plt.tight_layout()
 plt.show()
