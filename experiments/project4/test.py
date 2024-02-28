@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
+import networkx as nx
 
 os.system("clear")
 
@@ -20,24 +21,12 @@ data = {
     "country": ["usa", "usa", "usa", "ita", "ita"],
 }
 df = pd.DataFrame(data)
+# Build a dataframe with 4 connections
+df = pd.DataFrame({"from": ["A", "B", "C", "A"], "to": ["D", "A", "E", "C"]})
 
-# Group by release_year and count the occurrences of each type
-type_count_by_year = df.groupby(["release_year", "type"]).size().unstack(fill_value=0)
-type_count_by_year = type_count_by_year.reset_index()
+# Build your graph
+G = nx.from_pandas_edgelist(df, "from", "to")
 
-release_year = type_count_by_year["release_year"].to_list()
-
-plt.title("Number of Releases by Type Over Years")
-plt.xlabel("Year")
-plt.ylabel("Number of Releases")
-
-for type_value in type_count_by_year.columns:
-    if type_value == "release_year":
-        continue
-    count_values = []
-    for x in type_count_by_year[type_value]:
-        count_values.append(x)
-    plt.plot(release_year, count_values, label=type_value)
-
-plt.legend()
+# Plot it
+nx.draw(G, with_labels=True)
 plt.show()
