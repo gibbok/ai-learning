@@ -8,7 +8,7 @@ os.system("clear")
 
 # Example DataFrame
 data = {
-    "title": ["Terminator", "movie a", "movie b", "movie c", "True Lies"],
+    "title": ["Terminator", "Titanic", "movie b", "movie c", "True Lies"],
     "type": ["cinema", "cinema", "tv", "cinema", "cinema"],
     "release_year": [2020, 2020, 2021, 2022, 2022],
     "listed_in_new": [
@@ -21,14 +21,14 @@ data = {
     "country": ["usa", "usa", "usa", "ita", "ita"],
     "director_new": [
         "James Cameron",
-        "director_b",
+        "James Cameron",
         "director_b",
         "director_c",
         "James Cameron",
     ],
     "cast_new": [
         "Arnold Schwarzenegger",
-        "cast_a",
+        "Leonardo DiCaprio",
         "cast_b",
         "cast_b",
         "Arnold Schwarzenegger",
@@ -36,7 +36,7 @@ data = {
 }
 df = pd.DataFrame(data)
 
-grouped = df.groupby(["director_new", "cast_new"]).size().reset_index(name="count")
+grouped = df[["director_new", "cast_new"]]
 
 
 print(grouped)
