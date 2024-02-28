@@ -13,6 +13,8 @@ os.system("clear")
 dir_path = "./experiments/project5/"
 df = pd.read_csv(os.path.join(dir_path, "data.csv"))
 
+df_education = df[["education", "education-num"]].drop_duplicates().to_dict()
+
 # Encode categorical variables
 label_encoders = {}
 for column in df.select_dtypes(include=["object"]).columns:
@@ -94,10 +96,15 @@ input_2 = {
 
 print("Predicted salary 2:", predict_salary(input_2))
 
+
+print(df_education["education"])
+print(df["education-num"])
+
 # Plot
 fig, (axes) = plt.subplots(2, 2, figsize=(12, 6))
 plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2, ax=axes[0, 0])
 sns.kdeplot(df["age"], ax=axes[0, 1])
 sns.kdeplot(df["hours-per-week"], ax=axes[1, 1])
+sns.kdeplot(df["education-num"], ax=axes[1, 0])
 plt.tight_layout()
 plt.show()
