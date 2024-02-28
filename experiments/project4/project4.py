@@ -74,8 +74,10 @@ for category, titles in grouped_titles.items():
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 print("\n------ Chart: Network analysis of Actors / Directors")
-grouped = df[["director_new", "cast_new"]]
-print(grouped)
+grouped = df[["director_new", "cast_new"]][
+    0:2000
+]  # Only a subset of the dataset is used for the network diagram
+grouped.drop_duplicates()
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
 ax1.set_title("Actors/Directors connetions")
 G = nx.from_pandas_edgelist(df_network, "from", "to")
