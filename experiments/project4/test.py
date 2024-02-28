@@ -38,7 +38,6 @@ df = pd.DataFrame(data)
 
 grouped = df[["director_new", "cast_new"]]
 
-
 print(grouped)
 
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
