@@ -11,3 +11,9 @@ poetry shell
 cd ../
 make p1
 ```
+or
+
+```bash
+cd experiments/project-1
+jupyter notebook
+```
