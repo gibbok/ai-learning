@@ -42,18 +42,35 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
 # Example usage with new data
+# new_data = {
+#     "age": [39],
+#     "workclass": ["State-gov"],
+#     "fnlwgt": [77516],
+#     "education": ["Bachelors"],
+#     "education-num": [13],
+#     "marital-status": ["Never-married"],
+#     "occupation": ["Adm-clerical"],
+#     "relationship": ["Not-in-family"],
+#     "race": ["White"],
+#     "sex": ["Male"],
+#     "capital-gain": [21740],
+#     "capital-loss": [0],
+#     "hours-per-week": [40],
+#     "native-country": ["United-States"],
+# }
+
 new_data = {
-    "age": [39],
-    "workclass": ["State-gov"],
-    "fnlwgt": [77516],
-    "education": ["Bachelors"],
-    "education-num": [13],
-    "marital-status": ["Never-married"],
-    "occupation": ["Adm-clerical"],
+    "age": [38],
+    "workclass": ["Private"],
+    "fnlwgt": [215646],
+    "education": ["HS-grad"],
+    "education-num": [9],
+    "marital-status": ["Divorced"],
+    "occupation": ["Handlers-cleaners"],
     "relationship": ["Not-in-family"],
     "race": ["White"],
     "sex": ["Male"],
-    "capital-gain": [21740],
+    "capital-gain": [0],
     "capital-loss": [0],
     "hours-per-week": [40],
     "native-country": ["United-States"],
@@ -70,16 +87,16 @@ for column in new_df.select_dtypes(include=["object"]).columns:
 
 # Predict using the trained model
 prediction = model.predict(new_df)
-
+print(prediction)
 # Map predicted label to readable salary
 predicted_salary = "<=50K" if prediction[0] == 0 else ">50K"
 print("Predicted salary:", predicted_salary)
 
 
 # Plot the tree
-plt.figure(figsize=(12, 6))
-plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
-plt.show()
+# plt.figure(figsize=(12, 6))
+# plot_tree(model, rounded=True, feature_names=X.columns, max_depth=2)
+# plt.show()
 
 # # Plot histogram
 # sns.kdeplot(df["age"])
