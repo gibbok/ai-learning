@@ -22,7 +22,9 @@ data = {
 }
 df = pd.DataFrame(data)
 # Build a dataframe with 4 connections
-df = pd.DataFrame({"from": ["A", "B", "C", "A"], "to": ["D", "A", "E", "C"]})
+df = pd.DataFrame(
+    {"from": ["A", "B", "C", "A", "A", "B"], "to": ["D", "A", "E", "C", "E", "E"]}
+)
 
 # Build your graph
 G = nx.from_pandas_edgelist(df, "from", "to")
