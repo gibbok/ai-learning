@@ -14,6 +14,6 @@ make p1
 or
 
 ```bash
-cd experiments/project-1
+cd experiments/project1
 jupyter notebook
 ```
