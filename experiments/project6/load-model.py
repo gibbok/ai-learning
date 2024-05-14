@@ -10,19 +10,13 @@ from tensorflow.keras.models import Sequential
 import pathlib
 import matplotlib.pyplot as plt
 
-batch_size = 32
 img_height = 180
 img_width = 180
-dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
-data_dir = tf.keras.utils.get_file(
-    "flower_photos.tar", origin=dataset_url, extract=True
+
+img = tf.keras.utils.load_img(
+    "./experiments/project6/flower_photos/daisy/15207766_fc2f1d692c_n.jpg",
+    target_size=(img_height, img_width),
 )
-data_dir = pathlib.Path(data_dir).with_suffix("")
-
-flower_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
-flower_path = tf.keras.utils.get_file("xxx", origin=flower_url)
-
-img = tf.keras.utils.load_img(flower_path, target_size=(img_height, img_width))
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)  # Create a batch
 
@@ -31,20 +25,11 @@ model = keras.models.load_model("./experiments/project6/model.keras")
 predictions = model.predict(img_array)
 score = tf.nn.softmax(predictions[0])
 
-train_ds = tf.keras.utils.image_dataset_from_directory(
-    data_dir,
-    validation_split=0.2,
-    subset="training",
-    seed=123,
-    image_size=(img_height, img_width),
-    batch_size=batch_size,
-)
+# ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+print(predictions)
 
-class_names = train_ds.class_names
-num_classes = len(class_names)
+# ./experiments/project6/flower_photos/dandelion/8475769_3dea463364_m.jpg
+# [[-1.8662428  2.7576375 -1.3162225  6.6833487 -4.452546 ]]
 
-print(
-    "This image most likely belongs to {} with a {:.2f} percent confidence.".format(
-        class_names[np.argmax(score)], 100 * np.max(score)
-    )
-)
+# ./experiments/project6/flower_photos/daisy/15207766_fc2f1d692c_n.jpg
+# [[ 5.5258045  3.550712  -1.2611673 -2.4062922  0.5262111]]

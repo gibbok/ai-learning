@@ -107,7 +107,9 @@ val_loss = history.history["val_loss"]
 epochs_range = range(epochs)
 
 # Make a prediction
-sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
+sunflower_url = (
+    "https://thursd.com/storage/media/53238/Water-droplets-on-a-rose-flower.jpg"
+)
 sunflower_path = tf.keras.utils.get_file("Red_sunflower", origin=sunflower_url)
 
 img = tf.keras.utils.load_img(sunflower_path, target_size=(img_height, img_width))
