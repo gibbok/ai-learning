@@ -8,8 +8,8 @@ from tensorflow.keras.models import Sequential
 import pathlib
 import matplotlib.pyplot as plt
 
-dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
 # Downloads a file from a URL if it not already in the cache.
+dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
 data_dir = tf.keras.utils.get_file(
     "flower_photos.tar", origin=dataset_url, extract=True
 )
@@ -49,7 +49,6 @@ print(class_names)
 
 # Tune the value dynamically at runtime
 AUTOTUNE = tf.data.AUTOTUNE
-
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
@@ -98,7 +97,6 @@ loss = history.history["loss"]
 val_loss = history.history["val_loss"]
 
 epochs_range = range(epochs)
-
 
 # Make a prediction
 sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
