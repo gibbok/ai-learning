@@ -124,44 +124,22 @@ print(
 )
 
 
-model.save("./experiments/project6/my-model")
+model.save("./experiments/project6/model.keras")
 
-# # Convert the model
-converter = tf.lite.TFLiteConverter.from_saved_model(
-    "./experiments/project6/my-model.keras"
-)  # path to the SavedModel directory
-tflite_model = converter.convert()
-
-# Save the model.
-with open("model.tflite", "wb") as f:
-    f.write(tflite_model)
 
 # =============
 
-# # Convert the model
-# converter = tf.lite.TFLiteConverter.from_saved_model(
-#     "./x"
-# )  # path to the SavedModel directory
-# tflite_model = converter.convert()
 
-# # Save the model.
-# with open("model.tflite", "wb") as f:
-#     f.write(tflite_model)
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label="Training Accuracy")
+plt.plot(epochs_range, val_acc, label="Validation Accuracy")
+plt.legend(loc="lower right")
+plt.title("Training and Validation Accuracy")
 
-# Save the model.
-# with open("model.tflite", "wb") as f:
-#     f.write(tflite_model)
-
-# plt.figure(figsize=(8, 8))
-# plt.subplot(1, 2, 1)
-# plt.plot(epochs_range, acc, label="Training Accuracy")
-# plt.plot(epochs_range, val_acc, label="Validation Accuracy")
-# plt.legend(loc="lower right")
-# plt.title("Training and Validation Accuracy")
-
-# plt.subplot(1, 2, 2)
-# plt.plot(epochs_range, loss, label="Training Loss")
-# plt.plot(epochs_range, val_loss, label="Validation Loss")
-# plt.legend(loc="upper right")
-# plt.title("Training and Validation Loss")
-# plt.show()
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label="Training Loss")
+plt.plot(epochs_range, val_loss, label="Validation Loss")
+plt.legend(loc="upper right")
+plt.title("Training and Validation Loss")
+plt.show()
