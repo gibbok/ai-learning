@@ -1,19 +1,13 @@
 # https://www.tensorflow.org/tutorials/images/classification
 import matplotlib.pyplot as plt
-import numpy as np
-import PIL
 import tensorflow as tf
 
-from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.models import Sequential
-import pathlib
 import matplotlib.pyplot as plt
 
 img_height = 180
 img_width = 180
 
-img_path = "./experiments/project6/predict/2.jpg"
+img_path = "./experiments/project6/predict/5.jpg"
 
 img = tf.keras.utils.load_img(
     img_path,
@@ -22,7 +16,7 @@ img = tf.keras.utils.load_img(
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)  # Create a batch
 
-model = keras.models.load_model("./experiments/project6/model.keras")
+model = tf.keras.models.load_model("./experiments/project6/model.keras")
 
 predictions = model.predict(img_array)
 score = tf.nn.softmax(predictions[0])
