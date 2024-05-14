@@ -19,8 +19,8 @@ data_dir = tf.keras.utils.get_file(
 )
 data_dir = pathlib.Path(data_dir).with_suffix("")
 
-flower_url = "https://images.pexels.com/photos/36729/tulip-flower-bloom-pink.jpg"
-flower_path = tf.keras.utils.get_file("Red_sunflower", origin=flower_url)
+flower_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+flower_path = tf.keras.utils.get_file("xxx", origin=flower_url)
 
 img = tf.keras.utils.load_img(flower_path, target_size=(img_height, img_width))
 img_array = tf.keras.utils.img_to_array(img)
