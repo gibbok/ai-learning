@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 img_height = 180
 img_width = 180
 
-img_path = "./experiments/project6/flower_photos/try-predict-2.jpg"
+img_path = "./experiments/project6/flower_photos/try-predict-4.jpg"
 
 img = tf.keras.utils.load_img(
     img_path,
