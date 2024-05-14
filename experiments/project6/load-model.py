@@ -13,8 +13,10 @@ import matplotlib.pyplot as plt
 img_height = 180
 img_width = 180
 
+img_path = "./experiments/project6/flower_photos/try-predict-2.jpg"
+
 img = tf.keras.utils.load_img(
-    "./experiments/project6/flower_photos/daisy/15207766_fc2f1d692c_n.jpg",
+    img_path,
     target_size=(img_height, img_width),
 )
 img_array = tf.keras.utils.img_to_array(img)
@@ -25,11 +27,21 @@ model = keras.models.load_model("./experiments/project6/model.keras")
 predictions = model.predict(img_array)
 score = tf.nn.softmax(predictions[0])
 
-# ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+
+# Given labels, calculate percentages
+flowers = ["daisy", "dandelion", "roses", "sunflowers", "tulips"]
+
+# Pair each flower with its corresponding value
+flower_value_pairs = list(zip(flowers, predictions[0]))
+
+sorted_flower_value_pairs = sorted(flower_value_pairs, key=lambda x: x[1], reverse=True)
+
+
+# Print results
+print("++++++++++++++++++++++++")
+print(img_path)
+for flower, value in sorted_flower_value_pairs:
+    print(f"{flower}: {value:.2f}")
+
+print("++++++++++++++++++++++++")
 print(predictions)
-
-# ./experiments/project6/flower_photos/dandelion/8475769_3dea463364_m.jpg
-# [[-1.8662428  2.7576375 -1.3162225  6.6833487 -4.452546 ]]
-
-# ./experiments/project6/flower_photos/daisy/15207766_fc2f1d692c_n.jpg
-# [[ 5.5258045  3.550712  -1.2611673 -2.4062922  0.5262111]]
