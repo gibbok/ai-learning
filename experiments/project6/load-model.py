@@ -19,10 +19,10 @@ data_dir = tf.keras.utils.get_file(
 )
 data_dir = pathlib.Path(data_dir).with_suffix("")
 
-sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
-sunflower_path = tf.keras.utils.get_file("Red_sunflower", origin=sunflower_url)
+flower_url = "https://images.pexels.com/photos/36729/tulip-flower-bloom-pink.jpg"
+flower_path = tf.keras.utils.get_file("Red_sunflower", origin=flower_url)
 
-img = tf.keras.utils.load_img(sunflower_path, target_size=(img_height, img_width))
+img = tf.keras.utils.load_img(flower_path, target_size=(img_height, img_width))
 img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)  # Create a batch
 
