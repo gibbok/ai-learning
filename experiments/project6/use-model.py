@@ -1,8 +1,5 @@
-# https://www.tensorflow.org/tutorials/images/classification
-import matplotlib.pyplot as plt
+# Use the modal previously saved
 import tensorflow as tf
-
-import matplotlib.pyplot as plt
 
 img_height = 180
 img_width = 180
