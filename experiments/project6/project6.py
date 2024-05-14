@@ -8,13 +8,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import pathlib
 
-# Downloads a file from a URL if it not already in the cache.
+# Downloads dataset file from URL if it not already in the cache.
 dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
 data_dir = tf.keras.utils.get_file(
     "flower_photos.tar", origin=dataset_url, extract=True
 )
 data_dir = pathlib.Path(data_dir).with_suffix("")
-
 image_count = len(list(data_dir.glob("*/*.jpg")))
 print(image_count)
 
@@ -24,6 +23,7 @@ img_height = 180
 img_width = 180
 
 # Image augmentation
+# ( generating new transformed versions of images from the given image dataset to increase its diversity)
 train_datagen = ImageDataGenerator(
     rescale=1.0 / 255,
     rotation_range=40,
@@ -53,7 +53,7 @@ val_ds = val_datagen.flow_from_directory(
     class_mode="binary",
 )
 
-# Print the labels
+# Print the labels (use this array in the use-model.py)
 class_names = train_ds.class_indices
 print(class_names)
 
@@ -79,7 +79,7 @@ model = Sequential(
     ]
 )
 
-# Compile the model and print summary
+# Compile the model and print a summary
 model.compile(
     optimizer="adam",
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
