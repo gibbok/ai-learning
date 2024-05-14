@@ -1,9 +1,7 @@
 # https://www.tensorflow.org/tutorials/images/classification
 import matplotlib.pyplot as plt
 import numpy as np
-import PIL
 import tensorflow as tf
-
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
@@ -11,6 +9,7 @@ import pathlib
 import matplotlib.pyplot as plt
 
 dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
+# Downloads a file from a URL if it not already in the cache.
 data_dir = tf.keras.utils.get_file(
     "flower_photos.tar", origin=dataset_url, extract=True
 )
@@ -19,11 +18,12 @@ data_dir = pathlib.Path(data_dir).with_suffix("")
 image_count = len(list(data_dir.glob("*/*.jpg")))
 print(image_count)
 
-
+# Size images we are going to input in the neural network
 batch_size = 32
 img_height = 180
 img_width = 180
 
+# Generates a tf.data.Dataset from image files in a directory for training
 train_ds = tf.keras.utils.image_dataset_from_directory(
     data_dir,
     validation_split=0.2,
@@ -33,6 +33,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size,
 )
 
+# Generates a tf.data.Dataset from image files in a directory for validation
 val_ds = tf.keras.utils.image_dataset_from_directory(
     data_dir,
     validation_split=0.2,
@@ -42,28 +43,27 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size,
 )
 
+# Print the labels
 class_names = train_ds.class_names
 print(class_names)
 
+# Tune the value dynamically at runtime
 AUTOTUNE = tf.data.AUTOTUNE
 
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
-
+# Add a preprocessing layer which rescales input values to a new range
 normalization_layer = layers.Rescaling(1.0 / 255)
-
-
 normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
 image_batch, labels_batch = next(iter(normalized_ds))
 first_image = image_batch[0]
+
 # Notice the pixel values are now in `[0,1]`.
 print(np.min(first_image), np.max(first_image))
 
-# create model
-
+# Create the model with Sequential (groups a linear stack of layers)
 num_classes = len(class_names)
-
 model = Sequential(
     [
         layers.Rescaling(1.0 / 255, input_shape=(img_height, img_width, 3)),
@@ -79,24 +79,17 @@ model = Sequential(
     ]
 )
 
-# Compile the model
-
-
+# Compile the model and print summary
 model.compile(
     optimizer="adam",
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=["accuracy"],
 )
-
-
 model.summary()
 
-
 # Train the model
-# epochs = 10
-epochs = 1
+epochs = 10
 history = model.fit(train_ds, validation_data=val_ds, epochs=epochs)
-
 
 acc = history.history["accuracy"]
 val_acc = history.history["val_accuracy"]
@@ -107,6 +100,7 @@ val_loss = history.history["val_loss"]
 epochs_range = range(epochs)
 
 
+# Make a prediction
 sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
 sunflower_path = tf.keras.utils.get_file("Red_sunflower", origin=sunflower_url)
 
@@ -123,13 +117,10 @@ print(
     )
 )
 
-
+# Save model to file for reuse
 model.save("./experiments/project6/model.keras")
 
-
-# =============
-
-
+# Print a chart to analize the model
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label="Training Accuracy")
