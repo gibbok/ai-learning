@@ -10,7 +10,7 @@ A list of reviews per GTA game, along with generic information about the user su
 
 ## Output
 
-A list of reviews along with their classification, which could be binary positive or negative sentiment, were the `true_sentiment` reppresent if the user upvoted and `predicted_sentiment` reppresents the result of the forecast.
+A list of reviews along with their classification, which could be binary positive or negative sentiment, where `true_sentiment` represents if the user upvoted and `predicted_sentiment` represents the result of the forecast.
 
 ## Result
 
