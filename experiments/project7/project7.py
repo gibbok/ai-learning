@@ -24,7 +24,7 @@ model = Model(inputs=mobilenet.input, outputs=predictions)
 # Compile the model (define optimizer and loss function)
 model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
-# Load and pre-process your image (replace with your image loading logic)
+# Load and pre-process your image
 img = image.load_img("./experiments/project7/predict/1.jpg", target_size=img_shape)
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)  # Add a batch dimension
@@ -33,6 +33,12 @@ x = imagenet_utils.preprocess_input(x)  # Apply pre-processing for MobileNet
 # Make prediction on the image
 predictions = model.predict(x)
 
-# Decode the predicted class (replace with your class labels)
-predicted_class = np.argmax(predictions[0])
-print(f"Predicted class: {predicted_class}")
+# Decode the predicted class
+predicted_class_idx = np.argmax(predictions[0])
+
+# Load ImageNet labels
+with open("./experiments/project7/imagenet_labels.txt", "r") as f:
+    labels = f.readlines()
+
+# Print the human-readable prediction
+print(f"Predicted class: {labels[predicted_class_idx]}")
