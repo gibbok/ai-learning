@@ -75,7 +75,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 print("\n------ Chart: Network analysis of Actors / Directors")
 grouped = df[["director_new", "cast_new"]][
-    0:2000
+    0:10
 ]  # Only a subset of the dataset is used for the network diagram
 grouped.drop_duplicates()
 df_network = pd.DataFrame({"from": grouped["director_new"], "to": grouped["cast_new"]})
