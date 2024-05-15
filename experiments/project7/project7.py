@@ -3,6 +3,7 @@ from tensorflow.keras.applications import MobileNet, imagenet_utils
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.models import Model
+from tensorflow.keras.applications import imagenet_utils
 
 # Define the input shape for the image
 img_shape = (224, 224, 3)
@@ -40,5 +41,5 @@ predicted_class_idx = np.argmax(predictions[0])
 with open("./experiments/project7/imagenet_labels.txt", "r") as f:
     labels = f.readlines()
 
-# Print the human-readable prediction
-print(f"Predicted class: {labels[predicted_class_idx]}")
+# Print the human-readable prediction (remove extra space before label)
+print(f"Predicted class: {labels[predicted_class_idx].strip()}")
