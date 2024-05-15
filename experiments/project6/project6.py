@@ -7,7 +7,6 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import pathlib
-import tensorflowjs as tfjs
 
 # Downloads dataset file from URL if it not already in the cache.
 dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
