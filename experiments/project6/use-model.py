@@ -1,6 +1,6 @@
-# Use the modal previously saved
 import tensorflow as tf
 
+# Use this script to use the model previousely trained and saved
 # Image size for processing
 img_height = 180
 img_width = 180
