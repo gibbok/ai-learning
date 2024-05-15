@@ -38,6 +38,12 @@ Image classification with neural network using `tensorflow`, `matplotlib`, and `
 
 [Visit](./experiments/project6/README.md)
 
+## Project 7
+
+Image classification using pre-trained ResNet50 model trained on ImageNet data using `keras`.
+
+[Visit](./experiments/project6/README.md)
+
 ### Developer Tools
 
 To run the project:
