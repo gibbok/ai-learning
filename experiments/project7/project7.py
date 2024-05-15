@@ -7,7 +7,7 @@ from keras.applications.resnet50 import preprocess_input, ResNet50
 model = ResNet50(weights="imagenet")
 
 # Load and preprocess the image
-img_path = "./experiments/project7/predict/2.jpg"
+img_path = "./experiments/project7/predict/3.jpg"
 img = image.load_img(img_path, target_size=(224, 224))
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)
