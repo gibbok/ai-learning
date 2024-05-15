@@ -2,6 +2,14 @@
 
 Simple linear regressions for in memory array.
 
+## Input
+
+- Array of numerical data
+
+## Output
+
+- Single prediction
+
 ## Results
 
 ![result](./assets/result.png)
