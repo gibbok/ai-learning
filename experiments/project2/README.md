@@ -10,7 +10,7 @@ A collection of expenditure in CZK.
 
 A single value with the forecasted expenditure amount in CZK and EUR.
 
-## Result
+## Results
 
 ![result](./assets/result.png)
 

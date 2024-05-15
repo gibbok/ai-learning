@@ -2,7 +2,7 @@
 
 Simple linear regressions for in memory array.
 
-## Result
+## Results
 
 ![result](./assets/result.png)
 
