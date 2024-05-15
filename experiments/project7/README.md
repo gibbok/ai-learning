@@ -1,8 +1,10 @@
 # image-classification 
 
+Image classification using pre-trained ResNet50 model trained on ImageNet data.
+
 ## Input
 
-Image classification using pre-trained ResNet50 model trained on ImageNet data.
+- A local image file
 
 ## Output
 
