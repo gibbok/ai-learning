@@ -6,7 +6,7 @@ img_height = 180
 img_width = 180
 
 # Load image to predict
-img_path = "./experiments/project6/predict/5.jpg"
+img_path = "./experiments/project6/predict/4.jpg"
 img = tf.keras.utils.load_img(
     img_path,
     target_size=(img_height, img_width),
