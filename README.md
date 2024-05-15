@@ -28,7 +28,7 @@ Data analysis with network diagrams using `networkx`, `pandas`, and `matplotlib`
 
 ## Project 5
 
-Analyze frequency and Decision Tree classification using `sklearn`, `matplotlib`, `pandas`, and `seaborn`.
+Analyze frequency and decision tree classification using `sklearn`, `matplotlib`, `pandas`, and `seaborn`.
 
 [Visit](./experiments/project5/README.md)
 
