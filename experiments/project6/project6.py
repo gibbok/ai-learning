@@ -18,13 +18,12 @@ data_dir = pathlib.Path(data_dir).with_suffix("")
 image_count = len(list(data_dir.glob("*/*.jpg")))
 print(image_count)
 
-# Size images we are going to input in the neural network
+# Specify the dimensions of the images to be used as input for the neural network
 batch_size = 32
 img_height = 180
 img_width = 180
 
-# Image augmentation
-# ( generating new transformed versions of images from the given image dataset to increase its diversity)
+# Image Augmentation: Generates new transformed versions of images from the dataset to enhance its diversity and improve model generalization
 train_datagen = ImageDataGenerator(
     rescale=1.0 / 255,
     rotation_range=40,
