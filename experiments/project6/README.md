@@ -4,15 +4,14 @@ Flower Classification with TensorFlow.
 
 ## Input
 
-A list of images
+Images of various flower species.
 
 [Source data]([XXX](https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz))
 
 
 ## Output
 
-- Classify images based on the data set.
-
+- Classify new flower images using the trained model.
 
 ## Results
 
