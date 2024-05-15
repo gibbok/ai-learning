@@ -4,11 +4,11 @@ Given an historical collection of expenditures, and a year in the future; foreca
 
 ## Input
 
-A collection of expenditure in CZK.
+A collection of expenditure.
 
 ## Output
 
-A single value with the forecasted expenditure amount in CZK.
+A single value with the forecasted expenditure amount.
 
 ## Result
 
