@@ -2,6 +2,8 @@
 
 This repository hosts multiple `python` projects focused on AI learning.
 
+All code examples are well-commented, making them suitable for use as self-tutorials.
+
 ## Project 1
 
 Prediction using linear regression using `sklearn` and visualization using `matplotlib` and `seaborn`.
