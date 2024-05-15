@@ -7,8 +7,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import pathlib
 
-# Use this script to load data and generate the model.
-# Downloads dataset file from URL if it not already in the cache.
+# Use this script to load data and generate the model
+# Downloads dataset file from URL if it not already in the cache
 dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
 data_dir = tf.keras.utils.get_file(
     "flower_photos.tar", origin=dataset_url, extract=True
