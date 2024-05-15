@@ -20,6 +20,7 @@ keras = "^3.3.3"
 tensorflow = "^2.16.1"
 pydot = "^2.0.0"
 graphviz = "^0.20.3"
+tensorflow-hub = "^0.16.1"
 
 
 [build-system]
