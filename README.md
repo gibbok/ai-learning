@@ -1,5 +1,31 @@
-# ai-learning
-AI learning project
+# AI Learning
+
+This repository contains AI learning projects. It contains several projects:
+
+## Project 1
+
+Prediction using linear regression using `sklearn` and visualization using `matplotlib`.
+
+## Project 2
+
+Expenditure prediction using linear regression with `sklearn` and `matplotlib`.
+
+## Project 3
+
+Sentiment analysis using `sklearn` and visualization using `matplotlib`.
+
+## Project 4
+
+Data analysis with network diagrams using `networkx`, `pandas`, and `matplotlib`.
+
+## Project 5
+
+Analyze frequency and Decision Tree classification using `sklearn`, `matplotlib`, `pandas`, and `seaborn`.
+
+## Project 6
+
+Image classification with neural network using `TensorFlow`, `matplotlib`, and `numpy`.
+
 
 ## Commands
 
