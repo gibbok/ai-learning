@@ -6,7 +6,7 @@ Flower Classification with TensorFlow.
 
 Images of various flower species.
 
-[Source data]([XXX](https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz))
+[Source data](https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz)
 
 
 ## Output
