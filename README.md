@@ -1,6 +1,6 @@
 # AI Learning
 
-This repository hosts multiple Python projects focused on AI learning.
+This repository hosts multiple `python` projects focused on AI learning.
 
 ## Project 1
 
