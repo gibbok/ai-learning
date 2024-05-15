@@ -12,4 +12,4 @@ A single value with the forecasted expenditure amount in CZK.
 
 ## Result
 
-![localImage](./assets/sample.png)
+![localImage](./assets/result.png)
