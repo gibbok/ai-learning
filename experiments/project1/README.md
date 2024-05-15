@@ -6,6 +6,8 @@ Simple linear regressions for in memory array.
 
 ![result](./assets/result.png)
 
+Samples:
+
 ```text
 Coefficient: 1.0
 Intercept: 1.0

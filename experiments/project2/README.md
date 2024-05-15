@@ -14,6 +14,8 @@ A single value with the forecasted expenditure amount in CZK and EUR.
 
 ![result](./assets/result.png)
 
+Samples:
+
 ```text
 Predicted outcome for year 2024: [103729.2195] CZK or [4184.22252261] EUR
 Predicted outcome per month is [8644.101625] CZK or [348.68521022] EUR

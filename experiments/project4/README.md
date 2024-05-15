@@ -23,6 +23,8 @@ Analyze the data and answer the following questions:
 
 ![result](./assets/result.png)
 
+Samples:
+
 ```text
 ------ List all categories in all country
 ['Documentaries' 'International TV Shows' 'TV Dramas' ... 'TV Mysteries'

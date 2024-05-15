@@ -16,6 +16,8 @@ A list of reviews along with their classification, which could be binary positiv
 
 ![result](./assets/result.png)
 
+Samples:
+
 ```text
 [ True  True  True False False]
 Model evaluation:
