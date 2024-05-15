@@ -8,7 +8,6 @@ Image classification using pre-trained ResNet50 model trained on ImageNet data.
 
 - Top 3 predicted classes
 
-
 ## Results
 
 ![result](./assets/result.png)
