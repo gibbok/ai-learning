@@ -36,7 +36,7 @@ Analyze frequency and decision tree classification using `sklearn`, `matplotlib`
 
 ## Project 6
 
-Image classification with neural network using `tensorflow`, `matplotlib`, and `numpy`.
+Image classification with neural network using `tensorflow`, `matplotlib`, and `numpy`, enhanced with image augmentation techniques.
 
 [Visit](./experiments/project6/README.md)
 
